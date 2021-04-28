@@ -1,1 +1,2 @@
-# Made clone of evernote
+# Made clone of Evernote
+# Evermemo
