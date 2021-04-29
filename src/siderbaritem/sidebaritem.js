@@ -11,7 +11,7 @@ class SidebarItemComponent extends React.Component {
         super();
     }
     render() {
-        return(<div>hello from the SidebarComponent</div>);
+        return(<div>hello from the sidebar item component</div>);
     }
 }
 

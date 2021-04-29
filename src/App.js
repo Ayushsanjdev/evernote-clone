@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import firebase from 'firebase/app';
 import './firebase_config/config';
+import SidebarComponent from './sidebar/sidebar';
+import SidebarItemComponent from './siderbaritem/sidebaritem';
 
 class App extends React.Component {
   constructor() { 
@@ -15,8 +17,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="app-container">
         <h1>Evermemo</h1>
+        <SidebarComponent></SidebarComponent>
+        <SidebarItemComponent></SidebarItemComponent>
       </div>
     )
   }

@@ -10,7 +10,7 @@ class SidebarComponent extends React.Component {
         super();
     }
     render() {
-        return (<div>Hello form the sidebar</div>);
+        return (<div>Hello from the sidebar</div>);
     }
 }
 
