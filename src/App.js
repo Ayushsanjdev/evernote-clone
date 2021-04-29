@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import firebase from 'firebase/app';
+import './firebase_config/config';
 
 class App extends React.Component {
   constructor() { 
@@ -24,6 +25,16 @@ class App extends React.Component {
     firebase
     .firestore()
     .collection('notes')
+    .onSnapshot(serverUpdate => {
+      const notes = serverUpdate.docs.map(
+        _doc => {
+          const data = _doc.data();
+          data['id'] = _doc.id;
+          return data;
+        });
+        this.setState({notes});
+        console.log(notes);
+      });
   }
 }
 
