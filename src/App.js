@@ -3,6 +3,7 @@ import './App.css';
 import firebase from 'firebase/app';
 import './firebase_config/config';
 import SidebarComponent from './sidebar/sidebar';
+import EditorComponent from './editor/editor';
 import SidebarItemComponent from './siderbaritem/sidebaritem';
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
       <div className="app-container">
         <h1>Evermemo</h1>
         <SidebarComponent></SidebarComponent>
+        <EditorComponent></EditorComponent>
         <SidebarItemComponent></SidebarItemComponent>
       </div>
     )
