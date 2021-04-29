@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
-import firestore from 'firebase/firestore'
+import 'firebase/firestore';
+import 'firebase/auth';
 
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyA0Sm_r4C7pCikKM0zsET-0OPXJCI8QW2U",
     authDomain: "evermemo-ddcb2.firebaseapp.com",
     projectId: "evermemo-ddcb2",
@@ -10,8 +11,9 @@ var firebaseConfig = {
     appId: "1:935371223048:web:fb13600a5a4ed96585a1bd"
 };
 
-const firestore = firebase.firestore();
 firebase.initializeApp(firebaseConfig);
+const database = firebase.firestore();
+
 
 export default firebaseConfig;
   
