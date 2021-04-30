@@ -20,7 +20,7 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <h1>Evermemo</h1>
-        <SidebarComponent></SidebarComponent>
+        <SidebarComponent notes = {this.state.notes}></SidebarComponent>
         <EditorComponent></EditorComponent>
         <SidebarItemComponent></SidebarItemComponent>
       </div>
