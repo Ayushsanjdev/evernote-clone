@@ -1,13 +1,13 @@
-import React from 'react';
-import './App.css';
-import firebase from 'firebase/app';
-import './firebase_config/config';
-import SidebarComponent from 'sidebar/sidebar';
-import EditorComponent from './editor/editor';
-import SidebarItemComponent from './siderbaritem/sidebaritem';
+import React from "react";
+import "./App.css";
+import firebase from "firebase/app";
+import "./firebase_config/config";
+import SidebarComponent from "";
+import EditorComponent from "./editor/editor";
+import SidebarItemComponent from "./siderbaritem/sidebaritem";
 
 class App extends React.Component {
-  constructor() { 
+  constructor() {
     super();
     this.state = {
       selectedNoteIndex: null,
@@ -24,25 +24,23 @@ class App extends React.Component {
         <EditorComponent></EditorComponent>
         <SidebarItemComponent></SidebarItemComponent>
       </div>
-    )
+    );
   }
 
   componentDidMount = () => {
     firebase
-    .firestore()
-    .collection('notes')
-    .onSnapshot(serverUpdate => {
-      const notes = serverUpdate.docs.map(
-        _doc => {
+      .firestore()
+      .collection("notes")
+      .onSnapshot((serverUpdate) => {
+        const notes = serverUpdate.docs.map((_doc) => {
           const data = _doc.data();
-          data['id'] = _doc.id;
+          data["id"] = _doc.id;
           return data;
         });
         console.log(notes);
-        this.setState({notes});
-        
+        this.setState({ notes });
       });
-  }
+  };
 }
 
 export default App;
