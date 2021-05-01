@@ -20,8 +20,21 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <h1>Evermemo</h1>
-        <SidebarComponent selectedNoteIndex = {this.state.selectedNoteIndex} notes = {this.state.notes}></SidebarComponent>
-        <EditorComponent></EditorComponent>
+        <SidebarComponent 
+          selectedNoteIndex = {this.state.selectedNoteIndex} 
+          notes = {this.state.notes}
+          deleteNote={this.deleteNote}
+          selectNote={this.selectNote}
+          newNote={this.newNote}></SidebarComponent>
+          {
+            this.state.selectedNote ?
+            <EditorComponent
+              selectedNote={this.state.selectedNote}
+              selectedNoteIndex={this.state.selectedNoteIndex}
+              notes={this.state.notes}
+              noteUpdate={this.noteUpdate}></EditorComponent> :
+              null
+          }
         <SidebarItemComponent></SidebarItemComponent>
       </div>
     );
@@ -41,6 +54,9 @@ class App extends React.Component {
         this.setState({ notes });
       });
   };
+  selectNote = (note, index) => {
+    this.setState({ selectedNoteIndex: index, selectedNote: note });
+  }
 }
 
 export default App;
