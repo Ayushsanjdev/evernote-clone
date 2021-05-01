@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import './App.css';
 import firebase from 'firebase/app';
@@ -6,15 +5,6 @@ import './firebase_config/config';
 import SidebarComponent from './sidebar/sidebar';
 import EditorComponent from './editor/editor';
 import SidebarItemComponent from './siderbaritem/sidebaritem';
-=======
-import React from "react";
-import "./App.css";
-import firebase from "firebase/app";
-import "./firebase_config/config";
-import SidebarComponent from "";
-import EditorComponent from "./editor/editor";
-import SidebarItemComponent from "./siderbaritem/sidebaritem";
->>>>>>> 2b2876b3efc817b2ec4e6e903effae79ee167fa4
 
 class App extends React.Component {
   constructor() {

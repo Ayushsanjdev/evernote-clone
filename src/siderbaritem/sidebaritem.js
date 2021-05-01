@@ -9,6 +9,7 @@ import { removeHTMLTags } from "../helper_debouncer";
 class SidebarItemComponent extends React.Component {
   render() {
     const { _index, _note, selectedNoteIndex, classes } = this.props;
+
     if (_note) {
       return (
         <div key={_index}>
@@ -23,15 +24,26 @@ class SidebarItemComponent extends React.Component {
             >
               <ListItemText
                 primary={_note.title}
-                secondary={_note.body.substring(0, 30) + "..."}
+                secondary={removeHTMLTags(_note.body.substring(0, 30)) + "..."}
               ></ListItemText>
-            </div>
+            </div><DeleteIcon 
+			onClick={() => this.deleteNote(_note)}
+			className={classes.deleteIcon}
+			></DeleteIcon>
           </ListItem>
         </div>
       );
     } else {
       return <div></div>;
     }
+  }
+  selectNote = (n, i) => {
+	  this.props.selectNote(n, i);
+  }
+  deleteNote = (note) => {
+	  if(window.confirm(`Are u sure want to delete: ${note.title}`)) {
+		this.props.deleteNote(note);
+	  }
   }
 }
 
