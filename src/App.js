@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-container">
-        <h1>Evermemo</h1>
+        <h1 style={{margin: '0.8rem', fontSize: '4.5vw'}}>Evermemo</h1>
         <SidebarComponent 
           selectedNoteIndex = {this.state.selectedNoteIndex} 
           notes = {this.state.notes}
@@ -50,10 +50,10 @@ class App extends React.Component {
           data["id"] = _doc.id;
           return data;
         });
-        console.log(notes);
         this.setState({ notes });
       });
   };
+
   selectNote = (note, index) => {
     this.setState({ selectedNoteIndex: index, selectedNote: note });
   }
@@ -74,18 +74,36 @@ class App extends React.Component {
       body: ''
     };
     const newFromDB = 
-    await firebase
-    .firestore()
-    .collection('notes')
-    .add({
-      title: note.title,
-      body: note.body,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      await firebase
+      .firestore()
+      .collection('notes')
+      .add({
+        title: note.title,
+        body: note.body,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
     const newID = newFromDB.id;
+
     await this.setState({ notes: [...this.state.notes, note]});
-    const newNoteIndex = this.state.notes.indexOf(this.state.notes.filter(_note => _note.id === newID)[0]);
-    this.setState({ selectedNote: this.state.notes[newNoteIndex], selectedNoteIndex: newNoteIndex});
+    const newNoteIndex = this.state.notes.indexOf
+      (this.state.notes.filter(_note => _note.id === newID)[0]);
+      this.setState({ selectedNote: this.state.notes[newNoteIndex], selectedNoteIndex: newNoteIndex});
+  }
+  deleteNote = async (note) => {
+    const noteIndex = this.state.notes.indexOf(note);
+    await this.setState({ notes: this.state.notes.filter(_note => _note !== note)});
+    if (this.state.selectedNoteIndex === noteIndex) {
+      this.setState({ selectedNoteIndex: null, selectedNote: null});
+    } else {
+      this.state.notes.length > 1 ?
+      this.selectNote(this.state.notes[this.state.selectedNoteIndex - 1], this.state.selectedNoteIndex - 1) :
+      this.setState({ selectedNoteIndex: null, selectedNote: null});
+    }
+    firebase
+      .firestore()
+      .collection('notes')
+      .doc(note.id)
+      .delete();
   }
 }
 
