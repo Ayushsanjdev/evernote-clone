@@ -19,7 +19,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-container">
-        <h1 style={{ margin: "0.8rem", fontSize: "4.5vw" }}>Evermemo</h1>
+        <h1 style={{ margin: "0.8rem", fontSize: "2.5vw" }}>
+          Evermemo <small style={{ fontSize: "1.5vw" }}>desktop</small>
+        </h1>
         <SidebarComponent
           selectedNoteIndex={this.state.selectedNoteIndex}
           notes={this.state.notes}
